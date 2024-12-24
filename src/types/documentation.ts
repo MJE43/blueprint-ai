@@ -17,7 +17,7 @@ export interface QuestionnaireSection {
 export interface Question {
   id: string;
   text: string;
-  type: 'text' | 'multiline' | 'select' | 'multiselect';
+  type: 'text' | 'multiline' | 'select' | 'radio' | 'multiselect';
   options?: string[];
   required: boolean;
 }
@@ -36,3 +36,30 @@ export interface Step {
   title: string;
   description: string;
 }
+
+export interface DocumentContext {
+  projectDetails: ProjectDetails;
+  questionnaire: Record<string, any>;
+  generatedDocs: Record<string, string>;
+}
+
+export interface DocumentPrompt {
+  systemPrompt: string;
+  userPrompt: (context: DocumentContext) => string;
+}
+
+export interface DocumentPrompts {
+  [key: string]: DocumentPrompt;
+}
+
+export const documentOrder = [
+  'projectRequirements',
+  'techStack',
+  'backendStructure',
+  'frontendGuidelines',
+  'fileStructure',
+  'appFlow',
+  'systemPrompts'
+] as const;
+
+export type DocumentType = typeof documentOrder[number];

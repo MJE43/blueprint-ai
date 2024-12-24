@@ -15,24 +15,14 @@ export class GeminiService {
     this.model = genAI.getGenerativeModel({ model: "gemini-pro", generationConfig });
   }
 
-  async generatePRD(projectDetails: any, answers: any): Promise<string> {
-    const prompt = `Generate a comprehensive Product Requirements Document (PRD) for the following project:
-    
-    Project Details:
-    ${JSON.stringify(projectDetails, null, 2)}
-    
-    Questionnaire Answers:
-    ${JSON.stringify(answers, null, 2)}
-    
-    Please format the PRD with clear sections, bullet points, and proper markdown formatting.`;
-
+  async generatePRD(projectDetails: any, prompt: string): Promise<string> {
     try {
       const result = await this.model.generateContent(prompt);
       const response = await result.response;
       return response.text();
     } catch (error) {
-      console.error('Error generating PRD:', error);
-      throw new Error('Failed to generate PRD. Please try again.');
+      console.error('Error generating document:', error);
+      throw new Error('Failed to generate document. Please try again.');
     }
   }
 }
