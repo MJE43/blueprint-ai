@@ -7,13 +7,6 @@ export interface ProjectDetails {
   objectives: string[];
 }
 
-export interface QuestionnaireSection {
-  id: string;
-  title: string;
-  description: string;
-  questions: Question[];
-}
-
 export interface Question {
   id: string;
   text: string;
@@ -22,11 +15,11 @@ export interface Question {
   required: boolean;
 }
 
-export interface DocumentTemplate {
+export interface QuestionnaireSection {
   id: string;
-  name: string;
+  title: string;
   description: string;
-  sections: string[];
+  questions: Question[];
 }
 
 export type StepId = 'details' | 'questionnaire' | 'templates' | 'generate';

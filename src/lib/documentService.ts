@@ -33,7 +33,7 @@ export class DocumentService {
     return await this.gemini.generatePRD(this.context.projectDetails, fullPrompt);
   }
 
-  async generateDocuments(types: DocumentType[] = documentOrder): Promise<Record<string, string>> {
+  async generateDocuments(types: readonly DocumentType[] = documentOrder): Promise<Record<string, string>> {
     const results: Record<string, string> = {};
 
     for (const type of types) {
