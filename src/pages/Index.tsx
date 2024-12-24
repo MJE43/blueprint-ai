@@ -102,6 +102,18 @@ export default function Index() {
               />
             </>
           )}
+          {currentStep === "templates" && projectDetails && questionnaireAnswers && (
+            <>
+              <h1 className="text-3xl font-bold mb-2">Document Templates</h1>
+              <p className="text-muted-foreground mb-8">
+                Select which documents you'd like to generate for your project.
+              </p>
+              <DocumentGeneration
+                projectDetails={projectDetails}
+                questionnaireAnswers={questionnaireAnswers}
+              />
+            </>
+          )}
         </div>
       </main>
     </div>
