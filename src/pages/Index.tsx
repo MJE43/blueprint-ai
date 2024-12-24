@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { ProjectDetails, Step } from "@/types/documentation";
+import { QuestionnaireState } from "@/types/questionnaire";
 import { StepNavigation } from "@/components/StepNavigation";
 import { ProjectDetailsForm } from "@/components/ProjectDetailsForm";
-import { useToast } from "@/components/ui/use-toast";
+import { Questionnaire } from "@/components/Questionnaire";
+import { defaultQuestionnaire } from "@/data/questionnaire";
+import { useToast } from "@/hooks/use-toast";
 
 const steps: Step[] = [
   {
@@ -30,6 +33,7 @@ const steps: Step[] = [
 export default function Index() {
   const [currentStep, setCurrentStep] = useState<string>("details");
   const [projectDetails, setProjectDetails] = useState<ProjectDetails | null>(null);
+  const [questionnaireAnswers, setQuestionnaireAnswers] = useState<QuestionnaireState | null>(null);
   const { toast } = useToast();
 
   const handleStepClick = (stepId: string) => {
@@ -41,6 +45,16 @@ export default function Index() {
       });
       return;
     }
+
+    if (stepId === "templates" && !questionnaireAnswers) {
+      toast({
+        title: "Complete Questionnaire",
+        description: "Please complete the questionnaire before proceeding.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setCurrentStep(stepId);
   };
 
@@ -51,6 +65,11 @@ export default function Index() {
       title: "Project Details Saved",
       description: "Your project details have been saved successfully.",
     });
+  };
+
+  const handleQuestionnaireComplete = (answers: QuestionnaireState) => {
+    setQuestionnaireAnswers(answers);
+    setCurrentStep("templates");
   };
 
   return (
@@ -71,7 +90,18 @@ export default function Index() {
               <ProjectDetailsForm onSubmit={handleProjectDetailsSubmit} />
             </>
           )}
-          {/* Other steps will be implemented in subsequent iterations */}
+          {currentStep === "questionnaire" && projectDetails && (
+            <>
+              <h1 className="text-3xl font-bold mb-2">Project Questionnaire</h1>
+              <p className="text-muted-foreground mb-8">
+                Please answer these questions to help us generate comprehensive documentation.
+              </p>
+              <Questionnaire
+                sections={defaultQuestionnaire}
+                onComplete={handleQuestionnaireComplete}
+              />
+            </>
+          )}
         </div>
       </main>
     </div>
