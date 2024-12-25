@@ -1,12 +1,16 @@
-import { DocumentPrompts } from "@/types/documentation";
-import { formatProjectDetails, summarizeDoc, summarizeAllDocs } from "@/lib/documentService";
+import { DocumentPrompts } from '@/types/documentation';
+import {
+  formatProjectDetails,
+  summarizeDoc,
+  summarizeAllDocs,
+} from '@/lib/documentService';
 
 export const documentPrompts: DocumentPrompts = {
   projectRequirements: {
     systemPrompt: `You are a senior technical product manager creating a Project Requirements Document for a web application. 
     Focus on providing clear, actionable specifications that can guide AI-assisted development.
     Use markdown formatting with clear hierarchical structure.`,
-    
+
     userPrompt: (context) => `
     Create a comprehensive Project Requirements Document for:
 
@@ -25,12 +29,12 @@ export const documentPrompts: DocumentPrompts = {
     3. User Stories
     4. Non-Functional Requirements
     5. Constraints & Dependencies
-    6. Success Criteria`
+    6. Success Criteria`,
   },
   techStack: {
     systemPrompt: `You are a technical architect creating a Technical Stack Document for a web application. 
     Provide a detailed breakdown of the technologies and tools to be used in the project.`,
-    
+
     userPrompt: (context) => `
     Create a Technical Stack Document for:
 
@@ -46,12 +50,12 @@ export const documentPrompts: DocumentPrompts = {
     Include:
     1. Overview of the chosen technologies
     2. Rationale for selection
-    3. Integration considerations`
+    3. Integration considerations`,
   },
   backendStructure: {
     systemPrompt: `You are a backend developer creating a Backend Structure Document for a web application. 
     Outline the architecture and implementation details for the backend.`,
-    
+
     userPrompt: (context) => `
     Create a Backend Structure Document for:
 
@@ -65,12 +69,12 @@ export const documentPrompts: DocumentPrompts = {
 
     Include:
     1. High-level architecture diagram
-    2. Detailed descriptions of each component`
+    2. Detailed descriptions of each component`,
   },
   frontendGuidelines: {
     systemPrompt: `You are a frontend developer creating Frontend Guidelines for a web application. 
     Establish standards and patterns for frontend development.`,
-    
+
     userPrompt: (context) => `
     Create Frontend Guidelines for:
 
@@ -84,12 +88,12 @@ export const documentPrompts: DocumentPrompts = {
 
     Include:
     1. Best practices for component development
-    2. Code examples`
+    2. Code examples`,
   },
   fileStructure: {
     systemPrompt: `You are a project manager creating a File Structure Document for a web application. 
     Define the organization and naming conventions for project files.`,
-    
+
     userPrompt: (context) => `
     Create a File Structure Document for:
 
@@ -102,12 +106,12 @@ export const documentPrompts: DocumentPrompts = {
 
     Include:
     1. Overview of the file organization
-    2. Examples of file names and structures`
+    2. Examples of file names and structures`,
   },
   appFlow: {
     systemPrompt: `You are a UX designer creating an Application Flow Document for a web application. 
     Document user journeys and data flow.`,
-    
+
     userPrompt: (context) => `
     Create an Application Flow Document for:
 
@@ -120,12 +124,12 @@ export const documentPrompts: DocumentPrompts = {
 
     Include:
     1. Visual representations of user journeys
-    2. Descriptions of each flow`
+    2. Descriptions of each flow`,
   },
   systemPrompts: {
     systemPrompt: `You are a product manager creating a System Prompts Document for a web application. 
     Outline AI assistance prompts for development guidance.`,
-    
+
     userPrompt: (context) => `
     Create a System Prompts Document for:
 
@@ -138,6 +142,6 @@ export const documentPrompts: DocumentPrompts = {
 
     Include:
     1. List of prompts for various scenarios
-    2. Examples of usage`
-  }
+    2. Examples of usage`,
+  },
 };

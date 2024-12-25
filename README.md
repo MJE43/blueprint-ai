@@ -1,69 +1,25 @@
-# Welcome to your Lovable project
+AI-Powered Documentation Generator
+This application is designed to streamline the creation of software documentation by leveraging the power of AI. It provides a user-friendly interface for generating comprehensive documents, including:
 
-## Project info
+Project Requirements Document (PRD): Outlines the project's goals, features, and success criteria.
+Technical Stack Document: Details the technologies and tools used in the project.
+Backend Structure Document: Describes the architecture and implementation of the backend.
+Frontend Guidelines: Establishes standards and patterns for frontend development.
+File Structure Document: Defines the organization and naming conventions for project files.
+Application Flow Document: Illustrates user journeys and data flow within the application.
+System Prompts Document: Provides AI assistance prompts for development guidance and user support.
+Key Features
+Guided Questionnaires: Collects essential project information through structured questionnaires.
+AI-Powered Generation: Leverages a language model to generate detailed and comprehensive documents based on user input.
+Customizable Templates: Allows users to tailor the generated documents to their specific needs.
+User-Friendly Interface: Provides a simple and intuitive interface for easy navigation and document generation.
+Getting Started
+Clone the repository: git clone <repository_url>
+Install dependencies: npm install
+Set up your API key: Obtain an API key from your chosen language model provider and configure it in the application.
+Run the application: npm run dev
+Contributing
+Contributions are welcome! Please feel free to submit bug reports, feature requests, or pull requests.
 
-**URL**: https://lovable.dev/projects/a78fbf26-2c4b-4424-bab7-020b8e3e247c
-
-## How can I edit this code?
-
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/a78fbf26-2c4b-4424-bab7-020b8e3e247c) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with .
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/a78fbf26-2c4b-4424-bab7-020b8e3e247c) and click on Share -> Publish.
-
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+License
+This project is licensed under the MIT License.

@@ -1,9 +1,15 @@
-import { useState } from "react";
-import { ProjectDetails, ProjectType } from "@/types/documentation";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useState } from 'react';
+import { ProjectDetails, ProjectType } from '@/types/documentation';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
 interface ProjectDetailsFormProps {
   onSubmit: (details: ProjectDetails) => void;
@@ -11,10 +17,10 @@ interface ProjectDetailsFormProps {
 
 export function ProjectDetailsForm({ onSubmit }: ProjectDetailsFormProps) {
   const [details, setDetails] = useState<ProjectDetails>({
-    name: "",
-    description: "",
-    type: "web",
-    objectives: [""],
+    name: '',
+    description: '',
+    type: 'web',
+    objectives: [''],
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -23,28 +29,30 @@ export function ProjectDetailsForm({ onSubmit }: ProjectDetailsFormProps) {
   };
 
   const addObjective = () => {
-    setDetails(prev => ({
+    setDetails((prev) => ({
       ...prev,
-      objectives: [...prev.objectives, ""],
+      objectives: [...prev.objectives, ''],
     }));
   };
 
   const updateObjective = (index: number, value: string) => {
     const newObjectives = [...details.objectives];
     newObjectives[index] = value;
-    setDetails(prev => ({
+    setDetails((prev) => ({
       ...prev,
       objectives: newObjectives,
     }));
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 max-w-2xl">
+    <form onSubmit={handleSubmit} className="max-w-2xl space-y-6">
       <div className="space-y-2">
         <label className="text-sm font-medium">Project Name</label>
         <Input
           value={details.name}
-          onChange={e => setDetails(prev => ({ ...prev, name: e.target.value }))}
+          onChange={(e) =>
+            setDetails((prev) => ({ ...prev, name: e.target.value }))
+          }
           placeholder="Enter project name"
           required
         />
@@ -54,7 +62,9 @@ export function ProjectDetailsForm({ onSubmit }: ProjectDetailsFormProps) {
         <label className="text-sm font-medium">Project Description</label>
         <Textarea
           value={details.description}
-          onChange={e => setDetails(prev => ({ ...prev, description: e.target.value }))}
+          onChange={(e) =>
+            setDetails((prev) => ({ ...prev, description: e.target.value }))
+          }
           placeholder="Describe your project"
           required
         />
@@ -64,7 +74,9 @@ export function ProjectDetailsForm({ onSubmit }: ProjectDetailsFormProps) {
         <label className="text-sm font-medium">Project Type</label>
         <Select
           value={details.type}
-          onValueChange={value => setDetails(prev => ({ ...prev, type: value as ProjectType }))}
+          onValueChange={(value) =>
+            setDetails((prev) => ({ ...prev, type: value as ProjectType }))
+          }
         >
           <SelectTrigger>
             <SelectValue placeholder="Select project type" />
@@ -84,7 +96,7 @@ export function ProjectDetailsForm({ onSubmit }: ProjectDetailsFormProps) {
           <Input
             key={index}
             value={objective}
-            onChange={e => updateObjective(index, e.target.value)}
+            onChange={(e) => updateObjective(index, e.target.value)}
             placeholder={`Objective ${index + 1}`}
             required
           />
@@ -94,7 +106,9 @@ export function ProjectDetailsForm({ onSubmit }: ProjectDetailsFormProps) {
         </Button>
       </div>
 
-      <Button type="submit" className="w-full">Continue</Button>
+      <Button type="submit" className="w-full">
+        Continue
+      </Button>
     </form>
   );
 }

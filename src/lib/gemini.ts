@@ -1,4 +1,4 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { GoogleGenerativeAI } from '@google/generative-ai';
 
 const generationConfig = {
   temperature: 0.7,
@@ -12,7 +12,10 @@ export class GeminiService {
 
   constructor(apiKey: string) {
     const genAI = new GoogleGenerativeAI(apiKey);
-    this.model = genAI.getGenerativeModel({ model: "gemini-pro", generationConfig });
+    this.model = genAI.getGenerativeModel({
+      model: 'gemini-pro',
+      generationConfig,
+    });
   }
 
   async generatePRD(projectDetails: any, prompt: string): Promise<string> {

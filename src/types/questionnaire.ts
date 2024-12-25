@@ -1,4 +1,9 @@
-export type QuestionType = 'text' | 'multiline' | 'select' | 'radio' | 'multiselect';
+export type QuestionType =
+  | 'text'
+  | 'multiline'
+  | 'select'
+  | 'radio'
+  | 'multiselect';
 
 export interface Question {
   id: string;

@@ -1,5 +1,10 @@
-import { DocumentContext, DocumentPrompts, DocumentType, documentOrder } from "@/types/documentation";
-import { GeminiService } from "./gemini";
+import {
+  DocumentContext,
+  DocumentPrompts,
+  DocumentType,
+  documentOrder,
+} from '@/types/documentation';
+import { GeminiService } from './gemini';
 
 export class DocumentService {
   private context: DocumentContext;
@@ -30,10 +35,15 @@ export class DocumentService {
     }
 
     const fullPrompt = `${prompt.systemPrompt}\n\n${prompt.userPrompt(this.context)}`;
-    return await this.gemini.generatePRD(this.context.projectDetails, fullPrompt);
+    return await this.gemini.generatePRD(
+      this.context.projectDetails,
+      fullPrompt
+    );
   }
 
-  async generateDocuments(types: readonly DocumentType[] = documentOrder): Promise<Record<string, string>> {
+  async generateDocuments(
+    types: readonly DocumentType[] = documentOrder
+  ): Promise<Record<string, string>> {
     const results: Record<string, string> = {};
 
     for (const type of types) {

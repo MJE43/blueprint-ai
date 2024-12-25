@@ -1,13 +1,34 @@
-import { useState } from "react";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useToast } from "@/hooks/use-toast";
-import { QuestionnaireSection, QuestionnaireState } from "@/types/questionnaire";
-import { useForm } from "react-hook-form";
+import { useState } from 'react';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { useToast } from '@/hooks/use-toast';
+import {
+  QuestionnaireSection,
+  QuestionnaireState,
+} from '@/types/questionnaire';
+import { useForm } from 'react-hook-form';
 
 interface QuestionnaireProps {
   sections: QuestionnaireSection[];
@@ -22,36 +43,38 @@ export function Questionnaire({ sections, onComplete }: QuestionnaireProps) {
   const handleSubmit = (data: QuestionnaireState) => {
     // Validate required fields
     const missingFields = sections
-      .flatMap(section => section.questions)
-      .filter(q => q.required && !data[q.id])
-      .map(q => q.text);
+      .flatMap((section) => section.questions)
+      .filter((q) => q.required && !data[q.id])
+      .map((q) => q.text);
 
     if (missingFields.length > 0) {
       toast({
-        title: "Missing Required Fields",
-        description: `Please fill in all required fields: ${missingFields.join(", ")}`,
-        variant: "destructive",
+        title: 'Missing Required Fields',
+        description: `Please fill in all required fields: ${missingFields.join(', ')}`,
+        variant: 'destructive',
       });
       return;
     }
 
     onComplete(data);
     toast({
-      title: "Questionnaire Completed",
-      description: "Your answers have been saved successfully.",
+      title: 'Questionnaire Completed',
+      description: 'Your answers have been saved successfully.',
     });
   };
 
   const renderQuestion = (question: Question) => {
     switch (question.type) {
-      case "text":
+      case 'text':
         return (
           <FormField
             control={form.control}
             name={question.id}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{question.text} {question.required && "*"}</FormLabel>
+                <FormLabel>
+                  {question.text} {question.required && '*'}
+                </FormLabel>
                 <FormControl>
                   <Input {...field} placeholder="Enter your answer" />
                 </FormControl>
@@ -61,16 +84,21 @@ export function Questionnaire({ sections, onComplete }: QuestionnaireProps) {
           />
         );
 
-      case "multiline":
+      case 'multiline':
         return (
           <FormField
             control={form.control}
             name={question.id}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{question.text} {question.required && "*"}</FormLabel>
+                <FormLabel>
+                  {question.text} {question.required && '*'}
+                </FormLabel>
                 <FormControl>
-                  <Textarea {...field} placeholder="Enter your detailed response" />
+                  <Textarea
+                    {...field}
+                    placeholder="Enter your detailed response"
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -78,15 +106,20 @@ export function Questionnaire({ sections, onComplete }: QuestionnaireProps) {
           />
         );
 
-      case "select":
+      case 'select':
         return (
           <FormField
             control={form.control}
             name={question.id}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{question.text} {question.required && "*"}</FormLabel>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormLabel>
+                  {question.text} {question.required && '*'}
+                </FormLabel>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
                   <FormControl>
                     <SelectTrigger>
                       <SelectValue placeholder="Select an option" />
@@ -106,14 +139,16 @@ export function Questionnaire({ sections, onComplete }: QuestionnaireProps) {
           />
         );
 
-      case "radio":
+      case 'radio':
         return (
           <FormField
             control={form.control}
             name={question.id}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{question.text} {question.required && "*"}</FormLabel>
+                <FormLabel>
+                  {question.text} {question.required && '*'}
+                </FormLabel>
                 <FormControl>
                   <RadioGroup
                     onValueChange={field.onChange}
@@ -122,8 +157,13 @@ export function Questionnaire({ sections, onComplete }: QuestionnaireProps) {
                   >
                     {question.options?.map((option) => (
                       <div key={option} className="flex items-center space-x-2">
-                        <RadioGroupItem value={option} id={`${question.id}-${option}`} />
-                        <label htmlFor={`${question.id}-${option}`}>{option}</label>
+                        <RadioGroupItem
+                          value={option}
+                          id={`${question.id}-${option}`}
+                        />
+                        <label htmlFor={`${question.id}-${option}`}>
+                          {option}
+                        </label>
                       </div>
                     ))}
                   </RadioGroup>
@@ -155,7 +195,9 @@ export function Questionnaire({ sections, onComplete }: QuestionnaireProps) {
                 {section.title}
               </AccordionTrigger>
               <AccordionContent className="space-y-4">
-                <p className="text-muted-foreground mb-4">{section.description}</p>
+                <p className="mb-4 text-muted-foreground">
+                  {section.description}
+                </p>
                 {section.questions.map((question) => (
                   <div key={question.id} className="mb-6">
                     {renderQuestion(question)}

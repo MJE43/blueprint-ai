@@ -52,7 +52,7 @@ export const documentOrder = [
   'frontendGuidelines',
   'fileStructure',
   'appFlow',
-  'systemPrompts'
+  'systemPrompts',
 ] as const;
 
-export type DocumentType = typeof documentOrder[number];
+export type DocumentType = (typeof documentOrder)[number];
